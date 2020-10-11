@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Interact</title>
-    </head>
-    <body>
-        Bot Response : 
-        <br><br><br>
-        <form action = "" method = "POST">
-            Your text : <input type = "text" name = "usr_in" id = "usr_in" ><br>
-            <input type = "submit" id = "submit" value = "Send" name = "submit">
-        </form>
-    </body>
+  <head>
+    <title>Interact</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    Bot Response :
+    <br /><br /><br />
+    <form method="POST">
+      Your text : <input type="text" name="usr_in" id="usr_in" /><br />
+      <button type="submit" id="submit">Send</button>
+    </form>
+    <script>
+      $(document).ready(() => {
+        $("form").submit(async (e) => {
+          e.preventDefault();
+          const { usr_in } = e.target.elements;
+
+          axios.post("/interact",{
+              usr_in:usr_in.value
+          }).then((res) => console.log(res.data));
+      });
+    </script>
+  </body>
 </html>
