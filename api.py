@@ -17,9 +17,9 @@ def interact():
     if(request.method == "GET"):
         return render_template("interact.html")
     elif request.method == "POST":
-        a = request.json
+        a = request.form.to_dict()
         print(a)
-        b = vithack_final.main_function(a.usr_in)
+        b = vithack_final.main_function(a['usr_in'])
         return jsonify(result=b)
 
 if __name__ == '__main__':
